@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dipankar Bhowmik — Sysadmin &amp; DevOps Control Room</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Sticky Top Status Bar -->
+  <header class="top-status-bar" role="banner">
+    <div class="status-bar-inner">
+      <div class="brand-cluster">
+        <span class="node-identity">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span>dipankar@control-room:~</span>
+        </span>
+        <span class="availability-pill" id="top-availability-badge">
+          Immediate Joiner • Open to Bangalore / PAN India
+        </span>
+      </div>
+
+      <nav class="nav-links" aria-label="Control Room Sections">
+        <button type="button" class="nav-btn" data-scroll="hero-section">Terminal</button>
+        <button type="button" class="nav-btn" data-scroll="lab-ansible">Ansible Lab</button>
+        <button type="button" class="nav-btn" data-scroll="lab-triage">Helpdesk Triage</button>
+        <button type="button" class="nav-btn" data-scroll="field-notes">Field Notes</button>
+        <button type="button" class="nav-btn" data-scroll="skills-utilities">Skills &amp; Tools</button>
+        <button type="button" class="nav-btn" data-scroll="experience-section">Experience</button>
+        <button type="button" class="nav-btn" data-scroll="contact-dispatch">Dispatch Ticket</button>
+      </nav>
+
+      <div class="status-actions">
+        <button type="button" class="cmd-trigger-btn" id="open-cmd-btn" aria-label="Open Command Palette">
+          <span>Command Palette</span>
+          <span class="kbd-badge">Ctrl+K</span>
+        </button>
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Dark or Light Mode">
+          <span id="theme-icon-label">Light Mode</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="control-room-main">
+    <!-- SECTION 1: HERO & INTERACTIVE TERMINAL + FLEET MESH -->
+    <section class="section-block" id="hero-section">
+      <div class="hero-grid">
+        <!-- Left Column: Candidate Identity & Interactive Node Mesh -->
+        <div class="hero-card">
+          <div>
+            <div class="hero-role-tag">
+              <span>SYSADMIN &amp; DEVOPS CONTROL ROOM // LIVE LAB</span>
+            </div>
+            <h1 class="hero-name">Dipankar Bhowmik</h1>
+            <p class="hero-title-sub">
+              IT Support Engineer | Linux &amp; Network Administration
+            </p>
+            <p class="hero-bio" style="margin-top: 0.65rem;">
+              Hands-on IT Support &amp; Infrastructure professional with enterprise experience supporting <strong>~300 users</strong> across Windows 10/11 and Ubuntu Linux at <strong>ARC Document Solutions India Pvt. Ltd.</strong> (July 2025 – June 2026). Targeting Technical Support, IT Infrastructure, and DevOps roles.
+            </p>
+          </div>
+
+          <div class="hero-meta-grid">
+            <div class="meta-tile">
+              <div class="meta-label">Location &amp; Mobility</div>
+              <div class="meta-value">Kolkata, WB • Open to Bangalore / PAN India</div>
+            </div>
+            <div class="meta-tile">
+              <div class="meta-label">Enterprise Scope</div>
+              <div class="meta-value">~300 Users (Windows 10/11 &amp; Ubuntu Linux)</div>
+            </div>
+            <div class="meta-tile">
+              <div class="meta-label">Education</div>
+              <div class="meta-value">B.Sc. (Hons.) Advanced Networking &amp; Cyber Security</div>
+            </div>
+            <div class="meta-tile">
+              <div class="meta-label">Core Automation</div>
+              <div class="meta-value">Ansible, Shell, Prometheus, Grafana, ELK</div>
+            </div>
+          </div>
+
+          <!-- Interactive Fleet Node-Mesh SVG -->
+          <div class="mesh-container">
+            <div class="mesh-header">
+              <span>LIVE FLEET TOPOLOGY MESH (Click any node to ping in terminal)</span>
+              <span id="mesh-status-summary">6/6 Nodes Healthy</span>
+            </div>
+            <svg class="fleet-mesh-svg" id="fleet-mesh-svg" viewBox="0 0 620 135" role="img" aria-label="Interactive Linux Fleet Topology Mesh"></svg>
+          </div>
+
+          <div class="hero-cta-row">
+            <button type="button" class="btn-primary" data-scroll="lab-ansible">
+              Launch Ansible Patch Simulator
+            </button>
+            <button type="button" class="btn-secondary" data-scroll="lab-triage">
+              Triage Live Support Tickets (3)
+            </button>
+            <button type="button" class="btn-secondary" id="hero-copy-email-btn">
+              Copy Email (dkbhowmik0@gmail.com)
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Working CLI Terminal -->
+        <div class="terminal-window" aria-label="Interactive Control Room Terminal">
+          <div class="terminal-titlebar">
+            <div class="term-dots" aria-hidden="true">
+              <span class="term-dot red"></span>
+              <span class="term-dot amber"></span>
+              <span class="term-dot green"></span>
+            </div>
+            <span class="term-title">bash — dipankar@control-room: ~ (80x24)</span>
+            <span class="kbd-badge">Interactive Shell</span>
+          </div>
+
+          <div class="terminal-body" id="terminal-output" role="log" aria-live="polite"></div>
+
+          <form class="terminal-input-row" id="terminal-form" autocomplete="off">
+            <label for="terminal-input" class="term-prompt-label">dipankar@control-room:~$</label>
+            <input
+              type="text"
+              id="terminal-input"
+              class="term-input"
+              placeholder="Type a command (e.g., help, neofetch, sudo patch --check)..."
+              aria-label="Terminal Command Input"
+            />
+            <button type="submit" class="term-exec-btn">Run</button>
+          </form>
+
+          <div class="term-chips-bar" aria-label="Quick Terminal Commands">
+            <button type="button" class="chip-btn" data-term-cmd="help">help</button>
+            <button type="button" class="chip-btn" data-term-cmd="whoami">whoami</button>
+            <button type="button" class="chip-btn" data-term-cmd="neofetch">neofetch</button>
+            <button type="button" class="chip-btn" data-term-cmd="skills">skills</button>
+            <button type="button" class="chip-btn" data-term-cmd="ping 10.20.1.10">ping 10.20.1.10</button>
+            <button type="button" class="chip-btn" data-term-cmd="uptime">uptime</button>
+            <button type="button" class="chip-btn" data-term-cmd="projects">projects</button>
+            <button type="button" class="chip-btn" data-term-cmd="sudo patch --check">sudo patch --check</button>
+            <button type="button" class="chip-btn" data-term-cmd="contact">contact</button>
+            <button type="button" class="chip-btn" data-term-cmd="clear">clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CENTERPIECE LAB 1 — ANSIBLE PATCH PIPELINE & OBSERVABILITY SIMULATOR -->
+    <section class="section-block" id="lab-ansible">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Centerpiece Lab 01 // Flagship Project Simulator</div>
+          <h2 class="section-title">Ansible Linux Patch Management &amp; Prometheus Observability Lab</h2>
+          <p class="section-subtitle">
+            Inject realistic production faults (`/var` disk full at 96%, held `dpkg` lock, NTP clock drift +42s, or SSH unreachable) on any of the 6 managed Ubuntu/RHEL nodes, then click <strong>Run Playbook</strong> to watch the pre-flight safety gate, wave patching, and Prometheus/Grafana telemetry react live.
+          </p>
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button type="button" class="btn-secondary" id="inject-preset-faults-btn">
+            Inject Sample Faults
+          </button>
+          <button type="button" class="btn-secondary" id="reset-faults-btn">
+            Reset All Faults
+          </button>
+          <button type="button" class="btn-primary" id="run-playbook-btn">
+            ▶ Run Playbook
+          </button>
+        </div>
+      </div>
+
+      <div class="lab-panel">
+        <!-- 5-Stage Visual Pipeline Stepper -->
+        <div class="pipeline-stepper" id="pipeline-stepper">
+          <div class="pipeline-step done" data-stage="0">
+            <span class="step-index">1</span>
+            <div class="step-info">
+              <div class="step-name">Inventory</div>
+              <div class="step-desc">6 Ubuntu/RHEL Nodes</div>
+            </div>
+          </div>
+          <div class="pipeline-step done" data-stage="1">
+            <span class="step-index">2</span>
+            <div class="step-info">
+              <div class="step-name">Pre-Flight Role</div>
+              <div class="step-desc">Disk, Locks, NTP, SSH</div>
+            </div>
+          </div>
+          <div class="pipeline-step done" data-stage="2">
+            <span class="step-index">3</span>
+            <div class="step-info">
+              <div class="step-name">Wave Patching</div>
+              <div class="step-desc">apt / yum / dnf rolling</div>
+            </div>
+          </div>
+          <div class="pipeline-step done" data-stage="3">
+            <span class="step-index">4</span>
+            <div class="step-info">
+              <div class="step-name">JSON/Exporter Log</div>
+              <div class="step-desc">Reboot check &amp; CSV</div>
+            </div>
+          </div>
+          <div class="pipeline-step done" data-stage="4">
+            <span class="step-index">5</span>
+            <div class="step-info">
+              <div class="step-name">Prometheus/Grafana</div>
+              <div class="step-desc">Scrape /metrics &amp; KPIs</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fault Injection Controls per Host -->
+        <div class="fault-controls-header">
+          <span style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--text-secondary);">
+            PRE-RUN FAULT INJECTION MATRIX (Click fault buttons on any host below):
+          </span>
+          <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-cyan);" id="pipeline-run-status">
+            Status: Ready — Baseline Clean Run Loaded
+          </span>
+        </div>
+
+        <div class="fault-hosts-grid" id="fault-hosts-grid"></div>
+
+        <!-- 4 Output Tabs -->
+        <div class="lab-tabs-bar" role="tablist" aria-label="Ansible Pipeline Output Views">
+          <button type="button" class="tab-btn active" role="tab" data-tab="tab-ansible-log">
+            1. Live Ansible Playbook Output
+          </button>
+          <button type="button" class="tab-btn" role="tab" data-tab="tab-preflight-matrix">
+            2. Pre-Flight Check Matrix
+          </button>
+          <button type="button" class="tab-btn" role="tab" data-tab="tab-prometheus-json">
+            3. JSON Report &amp; Prometheus /metrics
+          </button>
+          <button type="button" class="tab-btn" role="tab" data-tab="tab-grafana-dashboard">
+            4. Grafana-Style Observability Dashboard
+          </button>
+        </div>
+
+        <!-- Tab 1: Live Ansible Playbook Output -->
+        <div class="tab-pane active" id="tab-ansible-log" role="tabpanel">
+          <div class="ansible-log-box" id="ansible-log-output"></div>
+        </div>
+
+        <!-- Tab 2: Pre-Flight Check Matrix -->
+        <div class="tab-pane" id="tab-preflight-matrix" role="tabpanel">
+          <div class="table-scroll-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Host / IP</th>
+                  <th>OS &amp; Env</th>
+                  <th>SSH Port 22</th>
+                  <th>/var Disk %</th>
+                  <th>dpkg / yum Lock</th>
+                  <th>NTP Drift</th>
+                  <th>Gate Decision</th>
+                  <th>Reboot Flag</th>
+                </tr>
+              </thead>
+              <tbody id="preflight-matrix-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 3: JSON Report & Prometheus Metrics -->
+        <div class="tab-pane" id="tab-prometheus-json" role="tabpanel">
+          <div style="display: flex; justify-content: flex-end; gap: 0.6rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+            <button type="button" class="btn-secondary" id="copy-prom-metrics-btn">
+              Copy Prometheus /metrics
+            </button>
+            <button type="button" class="btn-primary" id="download-csv-report-btn">
+              ⬇ Download Patch Report (.CSV)
+            </button>
+          </div>
+          <div class="exporter-grid">
+            <div class="code-card">
+              <div class="code-card-header">
+                <span>Prometheus Textfile Collector (/metrics)</span>
+                <span>patch_metrics.prom</span>
+              </div>
+              <pre class="code-pre" id="prometheus-metrics-pre"></pre>
+            </div>
+            <div class="code-card">
+              <div class="code-card-header">
+                <span>Structured Host Report (JSON)</span>
+                <span>patch_report.json</span>
+              </div>
+              <pre class="code-pre" id="json-report-pre"></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Grafana-Style Observability Dashboard -->
+        <div class="tab-pane" id="tab-grafana-dashboard" role="tabpanel">
+          <div class="kpi-row" id="grafana-kpi-row"></div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <div>
+                <div style="font-weight: 700; font-size: 0.92rem;">
+                  Per-Host Package Updates: Applied vs. Pending/Blocked (Horizontal Bar Comparison)
+                </div>
+                <div style="font-size: 0.76rem; color: var(--text-secondary);">
+                  Hover over any host bar for kernel version, run duration, `/var` disk headroom, and security errata details.
+                </div>
+              </div>
+              <div class="chart-legend">
+                <span class="legend-item">
+                  <span class="legend-swatch" style="background: #10b981;"></span>
+                  <span>Applied Updates</span>
+                </span>
+                <span class="legend-item">
+                  <span class="legend-swatch" style="background: #f43f5e;"></span>
+                  <span>Blocked / Pending Updates</span>
+                </span>
+                <span class="legend-item">
+                  <span class="legend-swatch" style="background: #f59e0b;"></span>
+                  <span>Reboot Required</span>
+                </span>
+              </div>
+            </div>
+            <svg class="horiz-bar-svg" id="grafana-bar-svg" viewBox="0 0 820 265" role="img" aria-label="Horizontal Bar Chart of Package Updates Per Host"></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: CENTERPIECE LAB 2 — ENTERPRISE HELPDESK TRIAGE SIMULATOR -->
+    <section class="section-block" id="lab-triage">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Centerpiece Lab 02 // Enterprise Support Triage</div>
+          <h2 class="section-title">Enterprise Helpdesk &amp; Linux Incident Triage Simulator</h2>
+          <p class="section-subtitle">
+            Modelled on supporting <strong>~300 enterprise users</strong> across Windows 10/11 and Ubuntu Linux at <strong>ARC Document Solutions India Pvt. Ltd.</strong> Select a live ticket, execute diagnostic commands to uncover the root cause, and apply the verified remediation.
+          </p>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-emerald); font-weight: 700;" id="triage-score-badge">
+          Resolved Tickets: 0 / 3
+        </div>
+      </div>
+
+      <div class="lab-panel">
+        <div class="triage-layout">
+          <!-- Left Queue -->
+          <div class="ticket-queue-list" id="ticket-queue-list" role="tablist" aria-label="Incident Queue"></div>
+
+          <!-- Right Interactive Investigation Console -->
+          <div class="ticket-workspace" id="ticket-workspace"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: ENGINEERING FIELD NOTES (PROBLEM -> ROOT CAUSE -> FIX) -->
+    <section class="section-block" id="field-notes">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Architecture &amp; Production Decisions</div>
+          <h2 class="section-title">Engineering Field Notes (Problem → Root Cause → Fix)</h2>
+          <p class="section-subtitle">
+            Real implementation decisions from building the Linux Patch Management Automation &amp; Observability Stack and supporting mixed Windows/Linux infrastructure.
+          </p>
+        </div>
+      </div>
+
+      <div class="field-notes-grid" id="field-notes-grid"></div>
+    </section>
+
+    <!-- SECTION 5: EVIDENCE-BACKED SKILLS MATRIX & LIVE SYSADMIN UTILITIES -->
+    <section class="section-block" id="skills-utilities">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Verified Capabilities &amp; Live Calculators</div>
+          <h2 class="section-title">Evidence-Backed Skills Matrix &amp; Sysadmin Utilities</h2>
+          <p class="section-subtitle">
+            Every listed skill maps directly to verified experience at <strong>ARC Document Solutions India Pvt. Ltd.</strong>, the <strong>Ansible Patch Automation Lab</strong>, or the <strong>B.Sc. (Hons.) in Advanced Networking &amp; Cyber Security</strong> curriculum.
+          </p>
+        </div>
+      </div>
+
+      <div class="lab-panel">
+        <div class="filter-bar" id="skills-filter-bar">
+          <button type="button" class="tab-btn active" data-skill-filter="all">All Verified Skills (8)</button>
+          <button type="button" class="tab-btn" data-skill-filter="linux">Linux &amp; OS</button>
+          <button type="button" class="tab-btn" data-skill-filter="networking">Networking</button>
+          <button type="button" class="tab-btn" data-skill-filter="devops">Automation &amp; Monitoring</button>
+          <button type="button" class="tab-btn" data-skill-filter="sysadmin">AD, Virtualization &amp; Support</button>
+          <button type="button" class="tab-btn" data-skill-filter="security">Endpoint Security</button>
+        </div>
+
+        <div class="table-scroll-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Competency Domain</th>
+                <th>Category</th>
+                <th>Verified Scope &amp; Tooling</th>
+                <th>Evidence &amp; Proof Link</th>
+              </tr>
+            </thead>
+            <tbody id="skills-matrix-tbody"></tbody>
+          </table>
+        </div>
+
+        <!-- Two Live Working Sysadmin Mini-Tools -->
+        <div class="utilities-grid">
+          <!-- Mini-Tool 1: CIDR Subnet Calculator -->
+          <div class="utility-card">
+            <div>
+              <div class="section-eyebrow">Live Utility 01 // Network Engineering</div>
+              <h3 style="font-size: 1.05rem; font-weight: 700;">IPv4 CIDR Subnet Calculator</h3>
+              <p style="font-size: 0.8rem; color: var(--text-secondary);">
+                Compute netmask, wildcard bits, network/broadcast addresses, and usable host ranges for VLAN and DHCP scope planning.
+              </p>
+            </div>
+
+            <div class="input-row-split">
+              <div>
+                <label class="form-label" for="cidr-ip-input">IPv4 Address</label>
+                <input type="text" id="cidr-ip-input" class="form-control" value="10.20.20.144" aria-label="IPv4 Address" />
+              </div>
+              <div>
+                <label class="form-label" for="cidr-prefix-input">CIDR (/0–32)</label>
+                <input type="number" id="cidr-prefix-input" class="form-control" min="0" max="32" value="24" aria-label="CIDR Prefix" />
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+              <button type="button" class="chip-btn" data-cidr-preset="10.20.20.144/24">Corp VLAN (/24)</button>
+              <button type="button" class="chip-btn" data-cidr-preset="10.20.1.10/26">Prod Servers (/26)</button>
+              <button type="button" class="chip-btn" data-cidr-preset="172.16.4.0/22">Branch Supernet (/22)</button>
+              <button type="button" class="chip-btn" data-cidr-preset="192.168.100.1/30">Point-to-Point (/30)</button>
+            </div>
+
+            <div class="hero-meta-grid" id="cidr-results-grid"></div>
+          </div>
+
+          <!-- Mini-Tool 2: chmod Permission Calculator -->
+          <div class="utility-card">
+            <div>
+              <div class="section-eyebrow">Live Utility 02 // Linux File Security</div>
+              <h3 style="font-size: 1.05rem; font-weight: 700;">Interactive <code>chmod</code> Permission Calculator</h3>
+              <p style="font-size: 0.8rem; color: var(--text-secondary);">
+                Bidirectional converter between permission checkboxes, octal notation (`0750`), and symbolic mode (`-rwxr-x---`).
+              </p>
+            </div>
+
+            <div class="input-row-split" style="grid-template-columns: 1fr 1fr;">
+              <div>
+                <label class="form-label" for="chmod-octal-input">Octal Mode</label>
+                <input type="text" id="chmod-octal-input" class="form-control" value="0750" maxlength="4" aria-label="Octal Mode" />
+              </div>
+              <div>
+                <label class="form-label" for="chmod-sym-input">Symbolic Representation</label>
+                <input type="text" id="chmod-sym-input" class="form-control" value="-rwxr-x---" maxlength="10" aria-label="Symbolic Mode" />
+              </div>
+            </div>
+
+            <div class="chmod-matrix">
+              <div class="chmod-col">
+                <div class="meta-label">Owner (User)</div>
+                <label class="chmod-check-label"><input type="checkbox" data-chmod-bit="u-r" checked /> Read (4)</label>
+                <label class="chmod-check-label"><input type="checkbox" data-chmod-bit="u-w" checked /> Write (2)</label>
+                <label class="chmod-check-label"><input type="checkbox" data-chmod-bit="u-x" checked /> Execute (1)</label>
+              </div>
+              <div class="chmod-col">
+                <div class="meta-label">Group</div>
+                <label class="chmod-check-label"><input type="checkbox" data-chmod-bit="g-r" checked /> Read (4)</label>
+                <label class="chmod-check-label"><input type="checkbox" data-chmod-bit="g-w" /> Write (2)</label>
+                <label class="chmod-check-label"><input type="checkbox" data-chmod-bit="g-x" checked /> Execute (1)</label>
+              </div>
+              <div class="chmod-col">
+                <div class="meta-label">Others (Public)</div>
+                <label class="chmod-check-label"><input type="checkbox" data-chmod-bit="o-r" /> Read (4)</label>
+                <label class="chmod-check-label"><input type="checkbox" data-chmod-bit="o-w" /> Write (2)</label>
+                <label class="chmod-check-label"><input type="checkbox" data-chmod-bit="o-x" /> Execute (1)</label>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
+                <button type="button" class="chip-btn" data-chmod-preset="0750">0750 (Script)</button>
+                <button type="button" class="chip-btn" data-chmod-preset="0644">0644 (Config)</button>
+                <button type="button" class="chip-btn" data-chmod-preset="0600">0600 (SSH Key)</button>
+                <button type="button" class="chip-btn" data-chmod-preset="0755">0755 (Public Bin)</button>
+              </div>
+              <code id="chmod-cmd-preview" style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-emerald);">
+                chmod 0750 /srv/ansible/patch_runner.sh
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: WORK EXPERIENCE, SECONDARY PROJECT, EDUCATION & CERTIFICATIONS -->
+    <section class="section-block" id="experience-section">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Closed-World Career &amp; Academic Record</div>
+          <h2 class="section-title">Work Experience, Infrastructure Projects &amp; Certifications</h2>
+        </div>
+      </div>
+
+      <div class="credentials-grid">
+        <!-- Work Experience & Secondary Project -->
+        <div class="lab-panel">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem;">
+              <div>
+                <span class="status-pill pass">Enterprise Experience</span>
+                <h3 style="font-size: 1.15rem; font-weight: 800; margin-top: 0.35rem;">
+                  Network / IT Support Intern — ARC Document Solutions India Pvt. Ltd.
+                </h3>
+              </div>
+              <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-cyan);">
+                July 2025 – June 2026 | Kolkata, West Bengal
+              </span>
+            </div>
+            <ul id="arc-experience-list" style="margin-top: 0.85rem; padding-left: 1.2rem; font-size: 0.85rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.4rem;"></ul>
+          </div>
+
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+            <span class="status-pill warn">Secondary Project 2</span>
+            <h3 style="font-size: 1.05rem; font-weight: 700; margin-top: 0.35rem;">
+              Additional Infrastructure &amp; Security Work (ELK Stack, ModSecurity WAF, Flask/K8s)
+            </h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.35rem;">
+              Centralized log collection and visualization with <strong>ELK Stack (Elasticsearch, Logstash, Kibana, Filebeat)</strong>, reverse-proxy layer protection using <strong>Nginx with ModSecurity WAF</strong>, and containerized CI/CD &amp; Kubernetes workflows.
+            </p>
+            <div style="margin-top: 0.6rem; font-family: var(--font-mono); font-size: 0.78rem;">
+              Repository:
+              <a href="https://github.com/Annoymous1524/flask-k8s-devops" target="_blank" rel="noopener noreferrer">
+                github.com/Annoymous1524/flask-k8s-devops ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education, Certifications & Languages -->
+        <div class="lab-panel">
+          <div>
+            <span class="status-pill pass">Academic Degree (2022 – 2025)</span>
+            <h3 style="font-size: 1.08rem; font-weight: 800; margin-top: 0.35rem;">
+              B.Sc. (Hons.) in Advanced Networking &amp; Cyber Security
+            </h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;">
+              Brainware University, Barasat, Kolkata
+            </p>
+          </div>
+
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: 0.9rem;">
+            <div class="meta-label" style="margin-bottom: 0.55rem;">Verified Certifications &amp; Coursework</div>
+            <div id="certifications-list" style="display: flex; flex-direction: column; gap: 0.45rem;"></div>
+          </div>
+
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: 0.9rem;">
+            <div class="meta-label" style="margin-bottom: 0.45rem;">Spoken Languages</div>
+            <div style="font-size: 0.84rem; color: var(--text-secondary);">
+              <strong>Bengali</strong> (Native) • <strong>English</strong> (Professional) • <strong>Hindi</strong> (Conversational)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: SUPPORT-TICKET CONTACT GENERATOR -->
+    <section class="section-block" id="contact-dispatch">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">P1 / P2 Hiring Dispatch Console</div>
+          <h2 class="section-title">Support-Ticket Interview &amp; Relocation Dispatch Generator</h2>
+          <p class="section-subtitle">
+            Generate a structured P1/P2 hiring dispatch payload for <strong>Dipankar Bhowmik</strong> with one-click clipboard copy and direct <code>mailto:dkbhowmik0@gmail.com</code> launch.
+          </p>
+        </div>
+      </div>
+
+      <div class="lab-panel">
+        <div class="dispatch-grid">
+          <form id="dispatch-ticket-form" autocomplete="off">
+            <div class="input-row-split" style="grid-template-columns: 1fr 1fr;">
+              <div class="form-group">
+                <label class="form-label" for="dispatch-priority">Priority SLA</label>
+                <select id="dispatch-priority" class="form-control">
+                  <option value="P1 — Immediate Interview (Immediate Joiner)">P1 — Immediate Interview</option>
+                  <option value="P2 — Technical Screening & Lab Review">P2 — Technical Screening</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="dispatch-role">Target Role Track</label>
+                <select id="dispatch-role" class="form-control">
+                  <option value="Technical Support / IT Infrastructure Engineer">Technical Support / IT Infrastructure</option>
+                  <option value="Linux System Administrator">Linux System Administrator</option>
+                  <option value="Junior DevOps & Automation Engineer">Junior DevOps &amp; Automation</option>
+                  <option value="Network & Endpoint Support Engineer">Network &amp; Endpoint Support</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="input-row-split" style="grid-template-columns: 1fr 1fr;">
+              <div class="form-group">
+                <label class="form-label" for="dispatch-org">Hiring Organization / Team</label>
+                <input type="text" id="dispatch-org" class="form-control" value="Enterprise Infrastructure Team" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="dispatch-location">Deployment Location</label>
+                <select id="dispatch-location" class="form-control">
+                  <option value="Bangalore (Relocation Ready — Immediate)">Bangalore (Relocation Ready)</option>
+                  <option value="Kolkata, West Bengal">Kolkata, West Bengal</option>
+                  <option value="PAN India / Hybrid / Remote">PAN India / Hybrid / Remote</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="dispatch-notes">Additional Interview / Role Notes</label>
+              <textarea id="dispatch-notes" class="form-control" rows="3">Reviewed your Ansible Patch Pipeline Simulator and Helpdesk Triage labs. Let's schedule a technical discussion.</textarea>
+            </div>
+
+            <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.5rem;">
+              <button type="button" class="btn-primary" id="copy-dispatch-btn">
+                Copy Ticket &amp; Email Address
+              </button>
+              <a href="mailto:dkbhowmik0@gmail.com" class="btn-secondary" id="mailto-dispatch-link">
+                ✉ Launch mailto:dkbhowmik0@gmail.com
+              </a>
+            </div>
+          </form>
+
+          <div class="code-card">
+            <div class="code-card-header">
+              <span>LIVE DISPATCH PAYLOAD PREVIEW</span>
+              <span>Assignee: Dipankar Bhowmik (+91 6296319143)</span>
+            </div>
+            <pre class="code-pre" id="dispatch-preview-pre" style="white-space: pre-wrap; max-height: 290px;"></pre>
+          </div>
+        </div>
+
+        <!-- Footer Direct Links -->
+        <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-secondary);">
+          <div>
+            <strong>Dipankar Bhowmik</strong> • +91 6296319143 •
+            <a href="mailto:dkbhowmik0@gmail.com">dkbhowmik0@gmail.com</a>
+          </div>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://linkedin.com/in/dipankarbhowmik" target="_blank" rel="noopener noreferrer">linkedin.com/in/dipankarbhowmik ↗</a>
+            <a href="https://github.com/Annoymous1524" target="_blank" rel="noopener noreferrer">github.com/Annoymous1524 ↗</a>
+            <a href="https://github.com/Annoymous1524/flask-k8s-devops" target="_blank" rel="noopener noreferrer">flask-k8s-devops ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating Tooltip for Horizontal Bar Chart -->
+  <div class="svg-tooltip" id="svg-tooltip" role="tooltip"></div>
+
+  <!-- Ctrl+K Command Palette Modal -->
+  <div class="modal-backdrop" id="cmd-modal-backdrop" aria-hidden="true">
+    <div class="cmd-modal" role="dialog" aria-modal="true" aria-label="Control Room Command Palette">
+      <input
+        type="text"
+        id="cmd-search-input"
+        class="cmd-search-input"
+        placeholder="Type a command or jump to section (e.g., Run Playbook, Ticket #1042, Copy Email)..."
+      />
+      <ul class="cmd-list" id="cmd-list"></ul>
+    </div>
+  </div>
+
+  <!-- Non-blocking Toast Banner -->
+  <div class="toast-banner" id="toast-banner" role="status" aria-live="polite"></div>
+
+  <script src="lib.js"></script>
+  <script>
+    (function () {
+      const Lib = window.ControlRoomLib;
+      if (!Lib) return;
+
+      // Deep clone initial fleet state
+      let fleetState = JSON.parse(JSON.stringify(Lib.INITIAL_FLEET_HOSTS));
+      let latestSimResult = Lib.evaluateFleetSimulation(fleetState);
+
+      // Triage simulator state
+      let activeTicketId = "1042";
+      const triageState = {
+        "1042": { ranDiagIds: ["ipconfig"], selectedFixId: null, solved: false },
+        "1089": { ranDiagIds: ["nc_check"], selectedFixId: null, solved: false },
+        "1104": { ranDiagIds: ["df_check"], selectedFixId: null, solved: false }
+      };
+
+      // chmod state
+      let chmodBits = Lib.parseOctalToChmodBits("0750");
+
+      // Toast helper
+      let toastTimer = null;
+      function showToast(msg) {
+        const el = document.getElementById("toast-banner");
+        if (!el) return;
+        el.textContent = msg;
+        el.classList.add("show");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          el.classList.remove("show");
+        }, 3200);
+      }
+
+      // Safe clipboard helper
+      function copyTextToClipboard(text, label) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(
+            () => showToast(`Copied ${label} to clipboard`),
+            () => fallbackCopy(text, label)
+          );
+        } else {
+          fallbackCopy(text, label);
+        }
+      }
+
+      function fallbackCopy(text, label) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand("copy");
+          showToast(`Copied ${label} to clipboard`);
+        } catch (err) {
+          showToast(`Copy ready: ${label}`);
+        }
+        document.body.removeChild(ta);
+      }
+
+      // Smooth section scroll helper
+      function scrollToSection(id) {
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      // Theme Management
+      function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const label = document.getElementById("theme-icon-label");
+        if (label) {
+          label.textContent = theme === "dark" ? "☀ Light Mode" : "☾ Dark Mode";
+        }
+        try {
+          localStorage.setItem("dipankar_control_room_theme", theme);
+        } catch (e) {}
+      }
+
+      try {
+        const savedTheme = localStorage.getItem("dipankar_control_room_theme");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          setTheme(savedTheme);
+        } else {
+          setTheme("dark");
+        }
+      } catch (e) {
+        setTheme("dark");
+      }
+
+      document.getElementById("theme-toggle-btn").addEventListener("click", () => {
+        const current = document.documentElement.getAttribute("data-theme") || "dark";
+        setTheme(current === "dark" ? "light" : "dark");
+      });
+
+      // Top navigation scroll buttons
+      document.querySelectorAll("[data-scroll]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          scrollToSection(btn.getAttribute("data-scroll"));
+        });
+      });
+
+      document.getElementById("hero-copy-email-btn").addEventListener("click", () => {
+        copyTextToClipboard(Lib.GROUND_TRUTH_DATA.profile.email, "dkbhowmik0@gmail.com");
+      });
+
+      // ======================================================================
+      // 1. HERO TERMINAL & INTERACTIVE NODE MESH
+      // ======================================================================
+      const termOutput = document.getElementById("terminal-output");
+      const termForm = document.getElementById("terminal-form");
+      const termInput = document.getElementById("terminal-input");
+
+      function appendTerminalExchange(commandText, resultText) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "term-line";
+        if (commandText) {
+          const promptLine = document.createElement("div");
+          promptLine.className = "term-prompt-echo";
+          promptLine.textContent = `dipankar@control-room:~$ ${commandText}`;
+          wrapper.appendChild(promptLine);
+        }
+        if (resultText) {
+          const outLine = document.createElement("div");
+          outLine.className = "term-output-text";
+          outLine.textContent = resultText;
+          wrapper.appendChild(outLine);
+        }
+        termOutput.appendChild(wrapper);
+        termOutput.scrollTop = termOutput.scrollHeight;
+      }
+
+      function runTerminalCommand(cmdString) {
+        const res = Lib.executeTerminalCommand(cmdString, fleetState);
+        if (res.action === "clear") {
+          termOutput.innerHTML = "";
+          return;
+        }
+        if (res.action === "print") {
+          appendTerminalExchange(cmdString, res.output);
+        }
+      }
+
+      // Initial terminal greeting
+      runTerminalCommand("neofetch");
+      appendTerminalExchange(
+        "",
+        "Type 'help' or click any quick-command chip below to inspect Dipankar's Linux, Network, and Ansible capabilities."
+      );
+
+      termForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const val = termInput.value.trim();
+        if (!val) return;
+        runTerminalCommand(val);
+        termInput.value = "";
+      });
+
+      document.querySelectorAll("[data-term-cmd]").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          const cmd = chip.getAttribute("data-term-cmd");
+          runTerminalCommand(cmd);
+        });
+      });
+
+      // Render Fleet Node-Mesh SVG in Hero
+      function renderFleetMesh() {
+        const svg = document.getElementById("fleet-mesh-svg");
+        const statusSummary = document.getElementById("mesh-status-summary");
+        if (!svg) return;
+
+        const sim = latestSimResult;
+        const healthyCount = sim.hostResults.filter((h) => h.preflightStatus === "PASS").length;
+        statusSummary.textContent = `${healthyCount}/${sim.hostResults.length} Nodes Healthy`;
+
+        const ctlX = 75;
+        const ctlY = 68;
+        const positions = [
+          { x: 235, y: 30 },
+          { x: 235, y: 105 },
+          { x: 395, y: 30 },
+          { x: 395, y: 105 },
+          { x: 545, y: 30 },
+          { x: 545, y: 105 }
+        ];
+
+        let svgHtml = "";
+        // Links from ansible-ctl to each host
+        sim.hostResults.forEach((hr, idx) => {
+          const pos = positions[idx];
+          const strokeColor =
+            hr.preflightStatus === "PASS"
+              ? "#10b981"
+              : hr.preflightStatus === "WARN"
+              ? "#f59e0b"
+              : "#f43f5e";
+          const dash = hr.preflightStatus === "BLOCK" ? 'stroke-dasharray="4 4"' : "";
+          svgHtml += `<line x1="${ctlX}" y1="${ctlY}" x2="${pos.x}" y2="${pos.y}" stroke="${strokeColor}" stroke-width="1.6" stroke-opacity="0.55" ${dash} />`;
+        });
+
+        // Control node
+        svgHtml += `
+          <g transform="translate(${ctlX}, ${ctlY})">
+            <circle r="20" fill="#06b6d4" fill-opacity="0.18" stroke="#06b6d4" stroke-width="2"></circle>
+            <text y="3" text-anchor="middle" fill="currentColor" font-size="9" font-family="monospace" font-weight="700">CTL</text>
+            <text y="32" text-anchor="middle" fill="currentColor" font-size="9" font-family="monospace">ansible-ctl</text>
+          </g>
+        `;
+
+        // 6 Fleet hosts
+        sim.hostResults.forEach((hr, idx) => {
+          const pos = positions[idx];
+          const color =
+            hr.preflightStatus === "PASS"
+              ? "#10b981"
+              : hr.preflightStatus === "WARN"
+              ? "#f59e0b"
+              : "#f43f5e";
+          svgHtml += `
+            <g class="mesh-node-group" data-mesh-ip="${hr.ip}" transform="translate(${pos.x}, ${pos.y})">
+              <circle class="node-core" r="14" fill="${color}" fill-opacity="0.2" stroke="${color}" stroke-width="2"></circle>
+              <circle r="4.5" fill="${color}"></circle>
+              <text y="-18" text-anchor="middle" fill="currentColor" font-size="9.5" font-family="monospace" font-weight="700">${hr.hostname}</text>
+              <text y="25" text-anchor="middle" fill="#94a3b8" font-size="8.5" font-family="monospace">${hr.ip} (${hr.preflightStatus})</text>
+            </g>
+          `;
+        });
+
+        svg.innerHTML = svgHtml;
+
+        svg.querySelectorAll(".mesh-node-group").forEach((nodeEl) => {
+          nodeEl.addEventListener("click", () => {
+            const ip = nodeEl.getAttribute("data-mesh-ip");
+            runTerminalCommand(`ping ${ip}`);
+            showToast(`Executed ping ${ip} in Hero Terminal`);
+          });
+        });
+      }
+
+      // ======================================================================
+      // 2. CENTERPIECE LAB 1 — ANSIBLE PATCH PIPELINE SIMULATOR
+      // ======================================================================
+      function renderFaultCards() {
+        const container = document.getElementById("fault-hosts-grid");
+        if (!container) return;
+
+        container.innerHTML = fleetState
+          .map((h) => {
+            return `
+              <div class="host-fault-card">
+                <div class="host-card-top">
+                  <span class="host-name-mono">${h.hostname}</span>
+                  <span class="host-env-badge ${h.env}">${h.env} • Wave ${h.wave}</span>
+                </div>
+                <div class="host-meta-line">
+                  ${h.ip} | ${h.os} | ${h.pendingUpdates} updates (${h.securityUpdates} sec)
+                </div>
+                <div class="fault-toggle-group">
+                  <button type="button" class="fault-btn ${h.faults.diskFull ? "active-fault" : ""}" data-host-id="${h.id}" data-fault="diskFull">
+                    <span>/var Disk 96%</span>
+                    <span>${h.faults.diskFull ? "ON" : "OFF"}</span>
+                  </button>
+                  <button type="button" class="fault-btn ${h.faults.dpkgLock ? "active-fault" : ""}" data-host-id="${h.id}" data-fault="dpkgLock">
+                    <span>dpkg/yum Lock</span>
+                    <span>${h.faults.dpkgLock ? "ON" : "OFF"}</span>
+                  </button>
+                  <button type="button" class="fault-btn ${h.faults.ntpDrift ? "warn-fault" : ""}" data-host-id="${h.id}" data-fault="ntpDrift">
+                    <span>NTP Drift +42s</span>
+                    <span>${h.faults.ntpDrift ? "ON" : "OFF"}</span>
+                  </button>
+                  <button type="button" class="fault-btn ${h.faults.unreachable ? "active-fault" : ""}" data-host-id="${h.id}" data-fault="unreachable">
+                    <span>SSH Unreachable</span>
+                    <span>${h.faults.unreachable ? "ON" : "OFF"}</span>
+                  </button>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+
+        container.querySelectorAll(".fault-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const hostId = btn.getAttribute("data-host-id");
+            const faultKey = btn.getAttribute("data-fault");
+            const hostObj = fleetState.find((item) => item.id === hostId);
+            if (!hostObj) return;
+            hostObj.faults[faultKey] = !hostObj.faults[faultKey];
+            renderFaultCards();
+            executePlaybookSimulation(false);
+          });
+        });
+      }
+
+      let stepAnimTimer = null;
+      function executePlaybookSimulation(animateSteps) {
+        latestSimResult = Lib.evaluateFleetSimulation(fleetState);
+        const statusEl = document.getElementById("pipeline-run-status");
+
+        const steps = Array.from(document.querySelectorAll("#pipeline-stepper .pipeline-step"));
+        if (stepAnimTimer) {
+          clearInterval(stepAnimTimer);
+          stepAnimTimer = null;
+        }
+
+        if (animateSteps) {
+          steps.forEach((s) => {
+            s.classList.remove("done", "active");
+          });
+          let idx = 0;
+          statusEl.textContent = "Status: Running Playbook Stages...";
+          stepAnimTimer = setInterval(() => {
+            if (idx > 0 && steps[idx - 1]) {
+              steps[idx - 1].classList.remove("active");
+              steps[idx - 1].classList.add("done");
+            }
+            if (idx < steps.length) {
+              steps[idx].classList.add("active");
+              idx++;
+            } else {
+              clearInterval(stepAnimTimer);
+              stepAnimTimer = null;
+              statusEl.textContent = `Playbook Complete — ${latestSimResult.kpis.compliantCount}/${latestSimResult.kpis.totalHosts} Hosts Patched (${latestSimResult.kpis.compliancePct}% Compliant)`;
+            }
+          }, 140);
+        } else {
+          steps.forEach((s) => {
+            s.classList.remove("active");
+            s.classList.add("done");
+          });
+          statusEl.textContent = `Live State Updated — ${latestSimResult.kpis.compliantCount}/${latestSimResult.kpis.totalHosts} Hosts Patched (${latestSimResult.kpis.compliancePct}% Compliant)`;
+        }
+
+        renderAnsibleOutputs();
+        renderFleetMesh();
+      }
+
+      function renderAnsibleOutputs() {
+        const sim = latestSimResult;
+
+        // Tab 1: Live Ansible Playbook Output
+        const logContainer = document.getElementById("ansible-log-output");
+        if (logContainer) {
+          logContainer.innerHTML = sim.logLines
+            .map((line) => `<div class="ans-line ${line.type}">${escapeHtml(line.text)}</div>`)
+            .join("");
+        }
+
+        // Tab 2: Pre-Flight Check Matrix
+        const matrixBody = document.getElementById("preflight-matrix-tbody");
+        if (matrixBody) {
+          matrixBody.innerHTML = sim.hostResults
+            .map((hr) => {
+              const pillClass =
+                hr.preflightStatus === "PASS"
+                  ? "pass"
+                  : hr.preflightStatus === "WARN"
+                  ? "warn"
+                  : "block";
+              return `
+                <tr>
+                  <td style="font-family: var(--font-mono); font-weight: 700;">${hr.hostname}<br/><span style="font-size: 0.72rem; color: var(--text-muted);">${hr.ip}</span></td>
+                  <td>${hr.os}<br/><span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan);">${hr.env.toUpperCase()}</span></td>
+                  <td>${hr.sshReachable ? '<span class="status-pill pass">OK (22/tcp)</span>' : '<span class="status-pill block">TIMEOUT</span>'}</td>
+                  <td style="font-family: var(--font-mono);">${hr.varDiskPct}% ${hr.varDiskPct >= 90 ? "⚠" : ""}</td>
+                  <td>${hr.lockHeld ? '<span class="status-pill block">LOCKED</span>' : '<span class="status-pill pass">CLEAN</span>'}</td>
+                  <td style="font-family: var(--font-mono);">+${hr.ntpOffsetSec}s</td>
+                  <td><span class="status-pill ${pillClass}">${hr.preflightStatus}</span></td>
+                  <td style="font-family: var(--font-mono);">${hr.rebootRequired ? '<span class="status-pill warn">REBOOT_REQ (1)</span>' : "No (0)"}</td>
+                </tr>
+              `;
+            })
+            .join("");
+        }
+
+        // Tab 3: Prometheus Metrics & JSON
+        const promPre = document.getElementById("prometheus-metrics-pre");
+        const jsonPre = document.getElementById("json-report-pre");
+        if (promPre) promPre.textContent = sim.prometheusText;
+        if (jsonPre) jsonPre.textContent = sim.jsonReportText;
+
+        // Tab 4: Grafana KPIs & Horizontal SVG Bar Chart
+        const kpiRow = document.getElementById("grafana-kpi-row");
+        if (kpiRow) {
+          kpiRow.innerHTML = `
+            <div class="kpi-tile">
+              <div class="kpi-title">Fleet Compliance Gate</div>
+              <div class="kpi-metric" style="color: ${sim.kpis.compliancePct === 100 ? "var(--accent-emerald)" : "var(--accent-amber)"};">
+                ${sim.kpis.compliantCount}/${sim.kpis.totalHosts} (${sim.kpis.compliancePct}%)
+              </div>
+              <div class="kpi-sub">patch_preflight_status == 1</div>
+            </div>
+            <div class="kpi-tile">
+              <div class="kpi-title">Packages Updated</div>
+              <div class="kpi-metric" style="color: var(--accent-cyan);">${sim.kpis.totalApplied}</div>
+              <div class="kpi-sub">${sim.kpis.totalPending} pending on blocked hosts</div>
+            </div>
+            <div class="kpi-tile">
+              <div class="kpi-title">Hosts Needing Reboot</div>
+              <div class="kpi-metric" style="color: var(--accent-amber);">${sim.kpis.rebootCount}</div>
+              <div class="kpi-sub">Kernel / glibc update flag</div>
+            </div>
+            <div class="kpi-tile">
+              <div class="kpi-title">Avg Wave Duration</div>
+              <div class="kpi-metric" style="color: var(--text-primary);">${sim.kpis.avgDuration}s</div>
+              <div class="kpi-sub">patch_run_duration_seconds</div>
+            </div>
+          `;
+        }
+
+        renderGrafanaHorizontalChart(sim.hostResults);
+      }
+
+      function renderGrafanaHorizontalChart(hostResults) {
+        const svg = document.getElementById("grafana-bar-svg");
+        const tooltip = document.getElementById("svg-tooltip");
+        if (!svg) return;
+
+        const maxPkgs = 26;
+        const leftPad = 155;
+        const rightPad = 175;
+        const chartWidth = 820 - leftPad - rightPad;
+        const rowHeight = 38;
+        const topPad = 20;
+
+        let html = "";
+
+        // Gridlines
+        [0, 5, 10, 15, 20, 25].forEach((val) => {
+          const x = leftPad + (val / maxPkgs) * chartWidth;
+          html += `
+            <line x1="${x}" y1="${topPad - 8}" x2="${x}" y2="${topPad + hostResults.length * rowHeight}" stroke="#334155" stroke-dasharray="3 3" stroke-width="1" />
+            <text x="${x}" y="${topPad + hostResults.length * rowHeight + 16}" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="monospace">${val}</text>
+          `;
+        });
+
+        hostResults.forEach((hr, i) => {
+          const y = topPad + i * rowHeight;
+          const isBlocked = hr.preflightStatus === "BLOCK";
+          const val = isBlocked ? hr.updatesRemaining : hr.updatesApplied;
+          const barW = Math.max(6, (val / maxPkgs) * chartWidth);
+          const barColor = isBlocked ? "#f43f5e" : "#10b981";
+          const statusLabel = isBlocked
+            ? `${hr.updatesRemaining} blocked (${hr.preflightStatus})`
+            : `${hr.updatesApplied} applied${hr.rebootRequired ? " • ↻ REBOOT" : ""}`;
+
+          html += `
+            <g class="bar-row-group" data-host-idx="${i}" style="cursor: pointer;">
+              <rect x="0" y="${y - 4}" width="820" height="${rowHeight - 4}" fill="transparent"></rect>
+              <text x="${leftPad - 12}" y="${y + 15}" text-anchor="end" fill="currentColor" font-size="11.5" font-family="monospace" font-weight="700">${hr.hostname}</text>
+              <rect x="${leftPad}" y="${y + 2}" width="${barW}" height="20" rx="4" fill="${barColor}"></rect>
+              ${
+                hr.rebootRequired
+                  ? `<circle cx="${leftPad + barW + 10}" cy="${y + 12}" r="4.5" fill="#f59e0b"></circle>`
+                  : ""
+              }
+              <text x="${leftPad + barW + (hr.rebootRequired ? 22 : 10)}" y="${y + 16}" fill="currentColor" font-size="11" font-family="monospace">${statusLabel}</text>
+            </g>
+          `;
+        });
+
+        svg.innerHTML = html;
+
+        svg.querySelectorAll(".bar-row-group").forEach((rowEl) => {
+          rowEl.addEventListener("mousemove", (ev) => {
+            const idx = Number(rowEl.getAttribute("data-host-idx"));
+            const hr = hostResults[idx];
+            if (!hr || !tooltip) return;
+            tooltip.style.display = "block";
+            tooltip.style.left = `${Math.min(window.innerWidth - 260, ev.clientX + 14)}px`;
+            tooltip.style.top = `${Math.max(12, ev.clientY - 70)}px`;
+            tooltip.innerHTML = `
+              <div><strong>${hr.hostname}</strong> (${hr.ip})</div>
+              <div>OS: ${hr.os} | Kernel: ${hr.kernelCurrent}</div>
+              <div>Pre-Flight: ${hr.preflightStatus} | /var Disk: ${hr.varDiskPct}%</div>
+              <div>Applied: ${hr.updatesApplied} | Pending: ${hr.updatesRemaining} | Duration: ${hr.durationSec}s</div>
+            `;
+          });
+          rowEl.addEventListener("mouseleave", () => {
+            if (tooltip) tooltip.style.display = "none";
+          });
+        });
+      }
+
+      // Lab 1 Buttons & Tab Switching
+      document.querySelectorAll("#lab-ansible .tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const targetId = btn.getAttribute("data-tab");
+          document.querySelectorAll("#lab-ansible .tab-btn").forEach((b) => b.classList.remove("active"));
+          document.querySelectorAll("#lab-ansible .tab-pane").forEach((p) => p.classList.remove("active"));
+          btn.classList.add("active");
+          const pane = document.getElementById(targetId);
+          if (pane) pane.classList.add("active");
+        });
+      });
+
+      document.getElementById("run-playbook-btn").addEventListener("click", () => {
+        executePlaybookSimulation(true);
+        showToast("Ansible Patch Playbook executed across 6 nodes");
+      });
+
+      document.getElementById("inject-preset-faults-btn").addEventListener("click", () => {
+        fleetState = JSON.parse(JSON.stringify(Lib.INITIAL_FLEET_HOSTS));
+        fleetState[1].faults.dpkgLock = true; // prd-ubuntu-app02 held dpkg lock
+        fleetState[2].faults.ntpDrift = true; // prd-rhel-db01 NTP drift
+        fleetState[4].faults.diskFull = true; // stg-ubuntu-ci01 /var 96%
+        renderFaultCards();
+        executePlaybookSimulation(true);
+        showToast("Injected sample faults: dpkg lock, NTP drift (+42s), and /var disk full (96%)");
+      });
+
+      document.getElementById("reset-faults-btn").addEventListener("click", () => {
+        fleetState = JSON.parse(JSON.stringify(Lib.INITIAL_FLEET_HOSTS));
+        renderFaultCards();
+        executePlaybookSimulation(true);
+        showToast("Cleared all injected faults — all 6 nodes healthy");
+      });
+
+      document.getElementById("copy-prom-metrics-btn").addEventListener("click", () => {
+        copyTextToClipboard(latestSimResult.prometheusText, "Prometheus /metrics exposition");
+      });
+
+      document.getElementById("download-csv-report-btn").addEventListener("click", () => {
+        const blob = new Blob([latestSimResult.csvContent], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "dipankar_fleet_patch_report.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("Downloaded dipankar_fleet_patch_report.csv");
+      });
+
+      // ======================================================================
+      // 3. CENTERPIECE LAB 2 — ENTERPRISE HELPDESK TRIAGE SIMULATOR
+      // ======================================================================
+      function renderTriageQueue() {
+        const queueEl = document.getElementById("ticket-queue-list");
+        const scoreBadge = document.getElementById("triage-score-badge");
+        if (!queueEl) return;
+
+        const ticketIds = ["1042", "1089", "1104"];
+        const solvedCount = ticketIds.filter((id) => triageState[id].solved).length;
+        if (scoreBadge) {
+          scoreBadge.textContent = `Resolved Tickets: ${solvedCount} / 3`;
+        }
+
+        queueEl.innerHTML = ticketIds
+          .map((id) => {
+            const t = Lib.HELPDESK_TICKETS[id];
+            const st = triageState[id];
+            return `
+              <button type="button" class="ticket-selector-card ${activeTicketId === id ? "active" : ""}" data-ticket-id="${id}">
+                <div class="ticket-id-row">
+                  <span>${t.number} • ${t.severity}</span>
+                  <span class="status-pill ${st.solved ? "pass" : "warn"}">${st.solved ? "RESOLVED" : "OPEN"}</span>
+                </div>
+                <div class="ticket-card-title">${t.title}</div>
+                <div style="font-size: 0.74rem; color: var(--text-secondary);">${t.category}</div>
+              </button>
+            `;
+          })
+          .join("");
+
+        queueEl.querySelectorAll(".ticket-selector-card").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            activeTicketId = btn.getAttribute("data-ticket-id");
+            renderTriageQueue();
+            renderActiveTicketWorkspace();
+          });
+        });
+      }
+
+      function renderActiveTicketWorkspace() {
+        const container = document.getElementById("ticket-workspace");
+        if (!container) return;
+
+        const t = Lib.HELPDESK_TICKETS[activeTicketId];
+        const st = triageState[activeTicketId];
+
+        const activeDiagOutputs = t.diagnostics.filter((d) => st.ranDiagIds.includes(d.id));
+        const selectedOption = t.remediationOptions.find((o) => o.id === st.selectedFixId);
+
+        container.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap;">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-cyan);">
+                ${t.number} // ${t.environment}
+              </div>
+              <h3 style="font-size: 1.12rem; font-weight: 800; margin-top: 0.2rem;">${t.title}</h3>
+              <p style="font-size: 0.84rem; color: var(--text-secondary); margin-top: 0.25rem;">
+                <strong>Reported Symptom:</strong> ${t.symptom}
+              </p>
+            </div>
+            <span class="status-pill ${st.solved ? "pass" : "warn"}">
+              ${st.solved ? "✓ SLA RESOLVED" : "INVESTIGATING"}
+            </span>
+          </div>
+
+          <div>
+            <div class="meta-label" style="margin-bottom: 0.45rem;">
+              Step 1 — Execute Diagnostic Commands (Click each command to inspect telemetry):
+            </div>
+            <div class="diag-btn-row">
+              ${t.diagnostics
+                .map(
+                  (d) => `
+                  <button type="button" class="diag-cmd-btn ${st.ranDiagIds.includes(d.id) ? "ran" : ""}" data-diag-id="${d.id}">
+                    ${st.ranDiagIds.includes(d.id) ? "✓ " : "▶ "}${d.label}
+                  </button>
+                `
+                )
+                .join("")}
+            </div>
+          </div>
+
+          <div class="ansible-log-box" style="max-height: 240px;">
+            ${activeDiagOutputs
+              .map(
+                (d) => `
+                <div style="margin-bottom: 0.85rem;">
+                  <div style="color: #38bdf8; font-weight: 700;">$ ${escapeHtml(d.cmd)}</div>
+                  <div style="color: #cbd5e1; margin-top: 0.2rem; white-space: pre-wrap;">${escapeHtml(d.output)}</div>
+                  <div style="color: #f59e0b; margin-top: 0.25rem;">→ Diagnostic Finding: ${escapeHtml(d.clue)}</div>
+                </div>
+              `
+              )
+              .join("")}
+          </div>
+
+          <div>
+            <div class="meta-label" style="margin-bottom: 0.45rem;">
+              Step 2 — Select &amp; Apply Root-Cause Remediation:
+            </div>
+            <div class="remediation-list">
+              ${t.remediationOptions
+                .map((opt) => {
+                  let cls = "";
+                  if (st.selectedFixId === opt.id) {
+                    cls = opt.isCorrect ? "correct-choice" : "wrong-choice";
+                  }
+                  return `
+                    <button type="button" class="remediation-option ${cls}" data-remediation-id="${opt.id}">
+                      ${escapeHtml(opt.label)}
+                    </button>
+                  `;
+                })
+                .join("")}
+            </div>
+          </div>
+
+          ${
+            selectedOption
+              ? `
+              <div class="code-card">
+                <div class="code-card-header">
+                  <span>REMEDIATION VERIFICATION LOG</span>
+                  <span>${selectedOption.isCorrect ? "PASS" : "RETRY NEEDED"}</span>
+                </div>
+                <div style="padding: 0.85rem; font-family: var(--font-mono); font-size: 0.78rem; color: ${
+                  selectedOption.isCorrect ? "#10b981" : "#f43f5e"
+                };">
+                  <div>${escapeHtml(selectedOption.feedback)}</div>
+                  ${
+                    selectedOption.verificationOutput
+                      ? `<pre style="margin-top: 0.6rem; color: #e2e8f0; white-space: pre-wrap;">${escapeHtml(
+                          selectedOption.verificationOutput
+                        )}</pre>`
+                      : ""
+                  }
+                </div>
+              </div>
+            `
+              : ""
+          }
+        `;
+
+        container.querySelectorAll("[data-diag-id]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const diagId = btn.getAttribute("data-diag-id");
+            if (!st.ranDiagIds.includes(diagId)) {
+              st.ranDiagIds.push(diagId);
+            }
+            renderActiveTicketWorkspace();
+          });
+        });
+
+        container.querySelectorAll("[data-remediation-id]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const remId = btn.getAttribute("data-remediation-id");
+            st.selectedFixId = remId;
+            const chosen = t.remediationOptions.find((o) => o.id === remId);
+            if (chosen && chosen.isCorrect) {
+              st.solved = true;
+              showToast(`Resolved ${t.number}: ${t.title}`);
+            }
+            renderTriageQueue();
+            renderActiveTicketWorkspace();
+          });
+        });
+      }
+
+      // ======================================================================
+      // 4. ENGINEERING FIELD NOTES & CREDENTIALS
+      // ======================================================================
+      function renderFieldNotesAndCredentials() {
+        const fnGrid = document.getElementById("field-notes-grid");
+        if (fnGrid) {
+          fnGrid.innerHTML = Lib.GROUND_TRUTH_DATA.fieldNotes
+            .map(
+              (fn) => `
+              <article class="fn-card">
+                <div style="display: flex; flex-direction: column; gap: 0.65rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="status-pill pass">FIELD NOTE // ${fn.number}</span>
+                    <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">${fn.tag}</span>
+                  </div>
+                  <h3 style="font-size: 1rem; font-weight: 800;">${escapeHtml(fn.title)}</h3>
+                  <div class="fn-step-block">
+                    <span class="fn-step-label problem">1. Problem</span>
+                    <p>${escapeHtml(fn.problem)}</p>
+                  </div>
+                  <div class="fn-step-block">
+                    <span class="fn-step-label cause">2. Root Cause</span>
+                    <p>${escapeHtml(fn.rootCause)}</p>
+                  </div>
+                  <div class="fn-step-block">
+                    <span class="fn-step-label fix">3. Engineering Fix</span>
+                    <p>${escapeHtml(fn.fix)}</p>
+                  </div>
+                </div>
+                <div class="code-card">
+                  <pre class="code-pre" style="max-height: 165px; font-size: 0.7rem;">${escapeHtml(fn.snippet)}</pre>
+                </div>
+              </article>
+            `
+            )
+            .join("");
+        }
+
+        const arcList = document.getElementById("arc-experience-list");
+        if (arcList) {
+          arcList.innerHTML = Lib.GROUND_TRUTH_DATA.experience[0].highlights
+            .map((item) => `<li>${escapeHtml(item)}</li>`)
+            .join("");
+        }
+
+        const certList = document.getElementById("certifications-list");
+        if (certList) {
+          certList.innerHTML = Lib.GROUND_TRUTH_DATA.certifications
+            .map(
+              (c) => `
+              <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-elevated); padding: 0.45rem 0.7rem; border-radius: 6px; border: 1px solid var(--border-subtle); font-size: 0.8rem;">
+                <strong>${escapeHtml(c.name)}</strong>
+                <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan);">${escapeHtml(c.issuer)}</span>
+              </div>
+            `
+            )
+            .join("");
+        }
+      }
+
+      // ======================================================================
+      // 5. EVIDENCE-BACKED SKILLS MATRIX & LIVE UTILITIES (CIDR + CHMOD)
+      // ======================================================================
+      function renderSkillsMatrix(filterCategory) {
+        const tbody = document.getElementById("skills-matrix-tbody");
+        if (!tbody) return;
+
+        const rows = Lib.GROUND_TRUTH_DATA.skillsMatrix.filter(
+          (item) => filterCategory === "all" || item.category === filterCategory
+        );
+
+        tbody.innerHTML = rows
+          .map(
+            (row) => `
+            <tr>
+              <td style="font-weight: 700;">${escapeHtml(row.skill)}</td>
+              <td><span class="status-pill pass">${escapeHtml(row.categoryLabel)}</span></td>
+              <td style="color: var(--text-secondary);">${escapeHtml(row.details)}</td>
+              <td>
+                <button type="button" class="proof-badge-btn" data-proof-scroll="${row.targetSection}">
+                  ${escapeHtml(row.proofBadge)}
+                </button>
+                ${
+                  row.proofSecondary
+                    ? `<button type="button" class="proof-badge-btn" data-proof-scroll="${row.targetSection}">${escapeHtml(
+                        row.proofSecondary
+                      )}</button>`
+                    : ""
+                }
+              </td>
+            </tr>
+          `
+          )
+          .join("");
+
+        tbody.querySelectorAll("[data-proof-scroll]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            scrollToSection(btn.getAttribute("data-proof-scroll"));
+          });
+        });
+      }
+
+      document.querySelectorAll("[data-skill-filter]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-skill-filter]").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          renderSkillsMatrix(btn.getAttribute("data-skill-filter"));
+        });
+      });
+
+      // Utility 1: CIDR Calculator
+      const cidrIpInput = document.getElementById("cidr-ip-input");
+      const cidrPrefixInput = document.getElementById("cidr-prefix-input");
+      const cidrResultsGrid = document.getElementById("cidr-results-grid");
+
+      function updateCidrCalculation() {
+        const res = Lib.calculateCIDRSubnet(cidrIpInput.value, cidrPrefixInput.value);
+        if (!res.valid) {
+          cidrResultsGrid.innerHTML = `
+            <div class="meta-tile" style="grid-column: 1 / -1; border-color: var(--accent-rose);">
+              <div class="meta-label">Validation Error</div>
+              <div class="meta-value" style="color: var(--accent-rose);">${escapeHtml(res.error)}</div>
+            </div>
+          `;
+          return;
+        }
+        cidrResultsGrid.innerHTML = `
+          <div class="meta-tile">
+            <div class="meta-label">Subnet Mask</div>
+            <div class="meta-value" style="font-family: var(--font-mono);">${res.netmask}</div>
+          </div>
+          <div class="meta-tile">
+            <div class="meta-label">Network / Broadcast</div>
+            <div class="meta-value" style="font-family: var(--font-mono);">${res.networkAddress} | ${res.broadcastAddress}</div>
+          </div>
+          <div class="meta-tile">
+            <div class="meta-label">Usable Host Range</div>
+            <div class="meta-value" style="font-family: var(--font-mono); color: var(--accent-emerald);">${res.usableRange}</div>
+          </div>
+          <div class="meta-tile">
+            <div class="meta-label">Usable / Total Hosts</div>
+            <div class="meta-value" style="font-family: var(--font-mono);">${res.usableHosts} usable (${res.totalHosts} total)</div>
+          </div>
+        `;
+      }
+
+      cidrIpInput.addEventListener("input", updateCidrCalculation);
+      cidrPrefixInput.addEventListener("input", updateCidrCalculation);
+
+      document.querySelectorAll("[data-cidr-preset]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const [ip, pre] = btn.getAttribute("data-cidr-preset").split("/");
+          cidrIpInput.value = ip;
+          cidrPrefixInput.value = pre;
+          updateCidrCalculation();
+        });
+      });
+
+      // Utility 2: chmod Calculator
+      const chmodOctalInput = document.getElementById("chmod-octal-input");
+      const chmodSymInput = document.getElementById("chmod-sym-input");
+      const chmodCmdPreview = document.getElementById("chmod-cmd-preview");
+
+      function syncChmodUIFromBits() {
+        const computed = Lib.computeChmodFromBits(chmodBits);
+        chmodOctalInput.value = computed.octal;
+        chmodSymInput.value = computed.symbolic;
+        chmodCmdPreview.textContent = computed.command;
+
+        ["u", "g", "o"].forEach((grp) => {
+          ["r", "w", "x"].forEach((perm) => {
+            const cb = document.querySelector(`[data-chmod-bit="${grp}-${perm}"]`);
+            if (cb) cb.checked = Boolean(chmodBits[grp][perm]);
+          });
+        });
+      }
+
+      document.querySelectorAll("[data-chmod-bit]").forEach((cb) => {
+        cb.addEventListener("change", () => {
+          const [grp, perm] = cb.getAttribute("data-chmod-bit").split("-");
+          chmodBits[grp][perm] = cb.checked;
+          syncChmodUIFromBits();
+        });
+      });
+
+      chmodOctalInput.addEventListener("input", () => {
+        const parsed = Lib.parseOctalToChmodBits(chmodOctalInput.value);
+        if (parsed) {
+          chmodBits = parsed;
+          syncChmodUIFromBits();
+        }
+      });
+
+      chmodSymInput.addEventListener("input", () => {
+        const parsed = Lib.parseSymbolicToChmodBits(chmodSymInput.value);
+        if (parsed) {
+          chmodBits = parsed;
+          syncChmodUIFromBits();
+        }
+      });
+
+      document.querySelectorAll("[data-chmod-preset]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const parsed = Lib.parseOctalToChmodBits(btn.getAttribute("data-chmod-preset"));
+          if (parsed) {
+            chmodBits = parsed;
+            syncChmodUIFromBits();
+          }
+        });
+      });
+
+      // ======================================================================
+      // 6. SUPPORT-TICKET CONTACT GENERATOR
+      // ======================================================================
+      function updateDispatchTicketPreview() {
+        const priority = document.getElementById("dispatch-priority").value;
+        const role = document.getElementById("dispatch-role").value;
+        const org = document.getElementById("dispatch-org").value || "Hiring Team";
+        const loc = document.getElementById("dispatch-location").value;
+        const notes = document.getElementById("dispatch-notes").value;
+
+        const payload = `============================================================
+HIRING DISPATCH TICKET // ASSIGNEE: DIPANKAR BHOWMIK
+============================================================
+Ticket Priority : ${priority}
+Target Role     : ${role}
+Organization    : ${org}
+Location        : ${loc}
+Candidate Notice: Immediate Joiner (Open to Bangalore / PAN India)
+------------------------------------------------------------
+Candidate Contact:
+  Phone    : +91 6296319143
+  Email    : dkbhowmik0@gmail.com
+  LinkedIn : linkedin.com/in/dipankarbhowmik
+  GitHub   : github.com/Annoymous1524
+------------------------------------------------------------
+Dispatch Notes:
+${notes}
+============================================================`;
+
+        const previewEl = document.getElementById("dispatch-preview-pre");
+        if (previewEl) previewEl.textContent = payload;
+
+        const mailtoLink = document.getElementById("mailto-dispatch-link");
+        if (mailtoLink) {
+          const subject = encodeURIComponent(`[${priority.split(" ")[0]}] ${role} — ${org}`);
+          const body = encodeURIComponent(payload);
+          mailtoLink.href = `mailto:dkbhowmik0@gmail.com?subject=${subject}&body=${body}`;
+        }
+        return payload;
+      }
+
+      ["dispatch-priority", "dispatch-role", "dispatch-org", "dispatch-location", "dispatch-notes"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener("input", updateDispatchTicketPreview);
+      });
+
+      document.getElementById("copy-dispatch-btn").addEventListener("click", () => {
+        const payload = updateDispatchTicketPreview();
+        copyTextToClipboard(payload, "Hiring Dispatch Ticket & dkbhowmik0@gmail.com");
+      });
+
+      // ======================================================================
+      // 7. CTRL+K COMMAND PALETTE MODAL
+      // ======================================================================
+      const cmdBackdrop = document.getElementById("cmd-modal-backdrop");
+      const cmdSearchInput = document.getElementById("cmd-search-input");
+      const cmdListEl = document.getElementById("cmd-list");
+
+      const COMMAND_ACTIONS = [
+        {
+          label: "Jump to Lab 1: Ansible Patch Pipeline Simulator",
+          badge: "Section",
+          run: () => scrollToSection("lab-ansible")
+        },
+        {
+          label: "Trigger Ansible Playbook Run (6-Host Fleet)",
+          badge: "Action",
+          run: () => {
+            scrollToSection("lab-ansible");
+            executePlaybookSimulation(true);
+          }
+        },
+        {
+          label: "Inject Sample Faults (dpkg lock, /var 96%, NTP drift)",
+          badge: "Fault Sim",
+          run: () => {
+            scrollToSection("lab-ansible");
+            document.getElementById("inject-preset-faults-btn").click();
+          }
+        },
+        {
+          label: "Jump to Lab 2: Enterprise Helpdesk Triage Simulator",
+          badge: "Section",
+          run: () => scrollToSection("lab-triage")
+        },
+        {
+          label: "Open Ticket #1042 — Workstation 169.254.x.x APIPA",
+          badge: "Triage",
+          run: () => {
+            activeTicketId = "1042";
+            renderTriageQueue();
+            renderActiveTicketWorkspace();
+            scrollToSection("lab-triage");
+          }
+        },
+        {
+          label: "Open Ticket #1089 — Ubuntu SSH Port 22 Blocked",
+          badge: "Triage",
+          run: () => {
+            activeTicketId = "1089";
+            renderTriageQueue();
+            renderActiveTicketWorkspace();
+            scrollToSection("lab-triage");
+          }
+        },
+        {
+          label: "Open Ticket #1104 — Linux /var No Space Left (+L1 FDs)",
+          badge: "Triage",
+          run: () => {
+            activeTicketId = "1104";
+            renderTriageQueue();
+            renderActiveTicketWorkspace();
+            scrollToSection("lab-triage");
+          }
+        },
+        {
+          label: "Jump to CIDR Subnet & chmod Permission Calculators",
+          badge: "Utilities",
+          run: () => scrollToSection("skills-utilities")
+        },
+        {
+          label: "Copy Email Address (dkbhowmik0@gmail.com)",
+          badge: "Contact",
+          run: () => copyTextToClipboard("dkbhowmik0@gmail.com", "dkbhowmik0@gmail.com")
+        },
+        {
+          label: "Copy Phone Number (+91 6296319143)",
+          badge: "Contact",
+          run: () => copyTextToClipboard("+91 6296319143", "+91 6296319143")
+        },
+        {
+          label: "Toggle Dark / High-Contrast Light Theme",
+          badge: "Theme",
+          run: () => document.getElementById("theme-toggle-btn").click()
+        }
+      ];
+
+      let activeCmdIndex = 0;
+      let filteredCommands = COMMAND_ACTIONS.slice();
+
+      function openCommandPalette() {
+        cmdBackdrop.classList.add("open");
+        cmdBackdrop.setAttribute("aria-hidden", "false");
+        cmdSearchInput.value = "";
+        activeCmdIndex = 0;
+        renderCommandList("");
+        setTimeout(() => cmdSearchInput.focus(), 20);
+      }
+
+      function closeCommandPalette() {
+        cmdBackdrop.classList.remove("open");
+        cmdBackdrop.setAttribute("aria-hidden", "true");
+      }
+
+      function renderCommandList(query) {
+        const q = (query || "").trim().toLowerCase();
+        filteredCommands = COMMAND_ACTIONS.filter(
+          (item) => item.label.toLowerCase().includes(q) || item.badge.toLowerCase().includes(q)
+        );
+        if (activeCmdIndex >= filteredCommands.length) {
+          activeCmdIndex = 0;
+        }
+        cmdListEl.innerHTML = filteredCommands
+          .map(
+            (item, idx) => `
+            <li class="cmd-item ${idx === activeCmdIndex ? "selected" : ""}" data-cmd-idx="${idx}">
+              <span>${escapeHtml(item.label)}</span>
+              <span class="kbd-badge">${escapeHtml(item.badge)}</span>
+            </li>
+          `
+          )
+          .join("");
+
+        cmdListEl.querySelectorAll(".cmd-item").forEach((li) => {
+          li.addEventListener("click", () => {
+            const idx = Number(li.getAttribute("data-cmd-idx"));
+            if (filteredCommands[idx]) {
+              closeCommandPalette();
+              filteredCommands[idx].run();
+            }
+          });
+        });
+      }
+
+      document.getElementById("open-cmd-btn").addEventListener("click", openCommandPalette);
+
+      cmdBackdrop.addEventListener("click", (ev) => {
+        if (ev.target === cmdBackdrop) closeCommandPalette();
+      });
+
+      cmdSearchInput.addEventListener("input", () => {
+        activeCmdIndex = 0;
+        renderCommandList(cmdSearchInput.value);
+      });
+
+      window.addEventListener("keydown", (ev) => {
+        if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === "k") {
+          ev.preventDefault();
+          if (cmdBackdrop.classList.contains("open")) {
+            closeCommandPalette();
+          } else {
+            openCommandPalette();
+          }
+          return;
+        }
+        if (!cmdBackdrop.classList.contains("open")) return;
+
+        if (ev.key === "Escape") {
+          ev.preventDefault();
+          closeCommandPalette();
+        } else if (ev.key === "ArrowDown") {
+          ev.preventDefault();
+          if (filteredCommands.length > 0) {
+            activeCmdIndex = (activeCmdIndex + 1) % filteredCommands.length;
+            renderCommandList(cmdSearchInput.value);
+          }
+        } else if (ev.key === "ArrowUp") {
+          ev.preventDefault();
+          if (filteredCommands.length > 0) {
+            activeCmdIndex = (activeCmdIndex - 1 + filteredCommands.length) % filteredCommands.length;
+            renderCommandList(cmdSearchInput.value);
+          }
+        } else if (ev.key === "Enter") {
+          ev.preventDefault();
+          if (filteredCommands[activeCmdIndex]) {
+            const fn = filteredCommands[activeCmdIndex].run;
+            closeCommandPalette();
+            fn();
+          }
+        }
+      });
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      // Initialize all views on load
+      renderFaultCards();
+      executePlaybookSimulation(false);
+      renderTriageQueue();
+      renderActiveTicketWorkspace();
+      renderFieldNotesAndCredentials();
+      renderSkillsMatrix("all");
+      updateCidrCalculation();
+      syncChmodUIFromBits();
+      updateDispatchTicketPreview();
+    })();
+  </script>
+</body>
+</html>
